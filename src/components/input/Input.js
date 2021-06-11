@@ -5,7 +5,7 @@ import ListContext from '../context/ListContext'
 const Input = () => {
 
     const [todo, onChangeTodo] = useState('')
-    const { setList } = useContext(ListContext)
+    const { setList, list } = useContext(ListContext)
 
     //Generates a random color
     const randomColor = () => {
@@ -17,10 +17,11 @@ const Input = () => {
     //Add a new todo
     function addTodo(){
         if(todo.length > 0)
-        setList(li => [...li, {
-            id: ( li[li.length - 1] ) ? li[li.length - 1].id + 1 : 1,
+        setList([...list, {
+            id: ( list[list.length - 1] ) ? list[list.length - 1].id + 1 : 1,
             todo: todo,
-            color: randomColor()
+            color: randomColor(),
+            isCompleted: false
         }])
 
         onChangeTodo('')

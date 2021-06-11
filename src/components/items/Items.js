@@ -9,8 +9,11 @@ const Items = ({ list }) => {
         style={styles.items}
         data={list}
         keyExtractor={item => item.id}
-        renderItem={ ({ item }) => <Item id={item.id} todo={item.todo} color={item.color} /> }
-        >
+        renderItem={ ({ item }) => <Item
+            id={item.id}
+            todo={item.todo}
+            isCompleted={item.isCompleted}
+            color={item.color} /> }>
         </FlatList>
     )
 }

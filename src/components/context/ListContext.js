@@ -1,11 +1,11 @@
-import React, { createContext, useState } from 'react'
-import listTodo from '../data/list'
+import React, { createContext } from 'react'
+import { useList } from '../../hooks/useList';
 
 const ListContext = createContext()
 
 export const ListProvider = props => {
 
-    const [list, setList] = useState(listTodo)
+    const [ list, setList] = useList();
 
     return (
         <ListContext.Provider value={{ list, setList}}>

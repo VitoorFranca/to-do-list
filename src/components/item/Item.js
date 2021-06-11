@@ -3,12 +3,11 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert, TextInput } from 'reac
 import { MaterialIcons, FontAwesome, AntDesign, Feather } from '@expo/vector-icons'
 import ListContext from '../context/ListContext'
 
-export default Item = ({ id, todo, color }) => {
+export default Item = ({ id, todo, color, isCompleted }) => {
 
     const { list, setList } = useContext(ListContext)
     const [valTodo, setValTodo] = useState(todo)
     const [isEditing, setIsEditing] = useState(false)
-    const [isCompleted, setIsCompleted] = useState(false)
 
     //Delete a todo
     function deleteTodo( todo){
@@ -16,7 +15,7 @@ export default Item = ({ id, todo, color }) => {
             {
                 text: 'Continue',
                 onPress() {
-                    setList( list => list.filter(li => li.id != id)) //
+                    setList(list.filter(li => li.id != id))
                 }
             },{
                 text: 'Cancel',
@@ -24,8 +23,32 @@ export default Item = ({ id, todo, color }) => {
         ])
     }
 
-    function update(){
+    function update(id, todo, isCompleted){
         setIsEditing(value => !value)
+
+        if(isEditing){
+            const newLists = list.map(item => {
+                if(item.id == id){
+                    console.log(item)
+                    item.todo = todo;
+                    item.isCompleted = isCompleted;
+                };
+                return item;
+            });
+            setList(newLists);
+        }
+
+        if(!isEditing) console.log('Quero atualizar isso!');
+    }
+
+    function completTodo (isCompleted) {
+        const newLists = list.map(item => {
+            if(item.id == id){
+                item.isCompleted = isCompleted;
+            };
+            return item;
+        });
+        setList(newLists);
     }
 
     const chooseBackgroundColor = (defaultColor) => {
@@ -49,10 +72,10 @@ export default Item = ({ id, todo, color }) => {
             <View style={styles.optionsBox}>
 
                 <TouchableOpacity
-                style={styles.check}
-                onPress={() => setIsCompleted(val => !val)}>
+                style={{...styles.check, display: isCompleted ? 'none' : 'flex'}}
+                onPress={() => completTodo(!isCompleted)}>
 
-                    <Feather 
+                    <Feather
                         name="check-circle"
                         size={24} 
                         color="#fff"/>
@@ -72,7 +95,7 @@ export default Item = ({ id, todo, color }) => {
 
                 <TouchableOpacity
                 style={styles.btnAtualizar}
-                onPress={update}>
+                onPress={() => update(id, valTodo, isCompleted )}>
 
                     {isEditing ? (
                         <AntDesign 
@@ -80,7 +103,7 @@ export default Item = ({ id, todo, color }) => {
                         size={26} 
                         color="#D8D8E0"/>
                     ) : (
-                        <FontAwesome 
+                        <FontAwesome
                         name="edit"
                         size={26}
                         color="#fff"/>
@@ -107,10 +130,11 @@ const styles = StyleSheet.create({
     },
     optionsBox: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        // backgroundColor: 'green',
+        width: 50,
         flex: 2,
+        // backgroundColor: 'green',
     },
     todoText: {
         color: '#fff',
@@ -120,15 +144,13 @@ const styles = StyleSheet.create({
         flex: 5,
     },
     check: {
-        // marginRight: 5,
+        marginRight: 5,
         margin: 'auto'
     },
     btnDelete: {
-        // marginRight: 5,
-        margin: 'auto'
+        marginRight: 5
     },
     btnAtualizar: {
-        // marginLeft: 5,
         marginRight: 5,
         margin: 'auto'
     },
