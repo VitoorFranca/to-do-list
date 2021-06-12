@@ -1,5 +1,7 @@
 # A React Native App To-Do List
 
+Fallow [Apk Download](https://github.com/VitoorFranca/to-do-list/releases/tag/v1.2)
+
 <img src="./gitHub/assets/to-do-list-home.jpg" />
 
 
