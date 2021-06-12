@@ -1,12 +1,3 @@
-<style>
-  ul{
-    border-radius: 10px;
-  }
-  ul li{
-    margin: 10px;
-  }
-</style>
-
 # A React Native App To-Do List
 
 <img src="./gitHub/assets/to-do-list-home.jpg" />
@@ -23,27 +14,27 @@
 
 <h2><strong>Technologies</strong></h2>
 
-<ul style="background-color: rgba(10, 10, 15, .1);">
+<ul>
   <li>
     <strong>
       React Native 👑
     </strong>
-    <ul style="background-color: rgba(10, 10, 15, .2);">
+    <ul>
       <li>
         <strong>
           Expo 🧙‍♂️
         </strong>
-        <ul style="background-color: rgba(10, 10, 15, .3);">
+        <ul>
           <li>
             <strong>
               React Hooks <small>🎩</small>🐇
             </strong>
-            <ul style="background-color: rgba(10, 10, 15, .4);">
+            <ul>
               <li>
                 <strong>
                   Context API ✌😎
                 </strong>
-                <ul style="background-color: rgba(10, 10, 15, .5);">
+                <ul>
                   <li>
                     <strong>
                       ListContext 💪
@@ -65,7 +56,7 @@
                 <strong>
                   Custom Hooks 😍
                 </strong>
-                <ul style="background-color: rgba(10, 10, 15, .5);">
+                <ul>
                   <li>
                     <strong>
                       useLocalStorage 💝
